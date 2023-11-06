@@ -25,4 +25,13 @@ def portfolio(request):
     return render(request,"portfolio.html",{"view":view})
 
 def contact(request):
+    if request.method=="POST":
+        name=request.POST['name']
+        email=request.POST['email']
+        msg=request.POST['message']
+        
+        insert=Messages(name=name,email=email,messages=msg)
+        insert.save()
+        
+        
     return render(request,"contact.html")
